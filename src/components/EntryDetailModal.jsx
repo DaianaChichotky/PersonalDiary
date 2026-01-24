@@ -1,14 +1,46 @@
-const EntryDetailModal = () => {
+import { useEffect } from 'react';
+
+const EntryDetailModal = ({ onClose }) => {
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [onClose]);
+
   return (
-    <div className='fixed inset-0 bg-black/50 flex items-center justify-center z-50'>
-      <div className='bg-base-100 rounded-lg w-full max-w-2xl p-6'>
-        <button className='btn btn-sm btn-circle btn-ghost absolute right-4 top-4'>
+    <div
+      className='
+        fixed inset-0 z-50
+        bg-black/50
+        flex items-center justify-center
+        animate-fadeIn
+      '
+      onClick={onClose}
+    >
+      <div
+        className='
+          bg-base-100
+          rounded-lg
+          w-full max-w-2xl
+          p-6
+          relative
+          animate-scaleIn
+        '
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          className='btn btn-sm btn-circle btn-ghost absolute right-4 top-4'
+          onClick={onClose}
+        >
           ✕
         </button>
 
         <img
           src='https://picsum.photos/800/400'
-          alt='Diary'
+          alt='Diary entry'
           className='rounded-lg mb-4'
         />
 

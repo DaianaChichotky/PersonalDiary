@@ -1,29 +1,34 @@
 @import 'tailwindcss';
 @plugin "daisyui";
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 32px;
-  background: linear-gradient(180deg, #2f3542, #1e272e);
-  color: white;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.header-title {
-  font-size: 28px;
-  font-weight: 600;
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-.add-entry-btn {
-  background-color: #1e90ff;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
 }
+
+.animate-scaleIn {
+  animation: scaleIn 0.2s ease-out;
+}
+
 
 .add-entry-btn:hover {
   background-color: #1c7ed6;
