@@ -1,2 +1,30 @@
 @import 'tailwindcss';
 @plugin "daisyui";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 32px;
+  background: linear-gradient(180deg, #2f3542, #1e272e);
+  color: white;
+}
+
+.header-title {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.add-entry-btn {
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.add-entry-btn:hover {
+  background-color: #1c7ed6;
+}
