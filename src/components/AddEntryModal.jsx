@@ -34,12 +34,16 @@ const AddEntryModal = ({ onAddEntry }) => {
 
   return (
     <>
-      <button
-        className='bg-yellow-200 hover:bg-yellow-300 text-gray-800 cursor-pointer font-bold font-handwriting px-6 py-3 rounded-lg shadow-lg transform hover:rotate-1 hover:scale-105 transition-all duration-300 mt-8 mb-8'
-        onClick={() => document.getElementById('my_modal_5').showModal()}
-      >
-        Add Entry
-      </button>
+      <div className='flex justify-start'>
+        <button
+          className='bg-yellow-200 hover:bg-yellow-300 text-gray-800 cursor-pointer font-bold font-handwriting 
+    px-10 py-4 text-lg rounded-xl shadow-lg transform hover:rotate-1 hover:scale-105 
+    transition-all duration-300 mt-8 mb-8 ml-4'
+          onClick={() => document.getElementById('modal').showModal()}
+        >
+          Add New Entry
+        </button>
+      </div>
 
       <dialog id='my_modal_5' className='modal modal-bottom sm:modal-middle'>
         <div className='modal-box bg-yellow-100 rounded-xl shadow-lg max-w-md p-6 font-handwriting'>
