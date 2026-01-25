@@ -1,12 +1,30 @@
-import DiaryCard from './DiaryCard';
+import { useState } from 'react';
+import { DiaryCard, EntryDetailModal } from '.';
 
-const DiaryList = () => {
+const DiaryList = ({ entries }) => {
+  const [selectedEntry, setSelectedEntry] = useState(null);
+
+  const sortedEntries = [...entries].sort(
+    (a, b) => new Date(b.date) - new Date(a.date),
+  );
+
   return (
-    <section className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-      <DiaryCard />
-      <DiaryCard />
-      <DiaryCard />
-    </section>
+    <>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4'>
+        {sortedEntries.map((entry) => (
+          <DiaryCard
+            key={entry.id}
+            entry={entry}
+            onSelect={() => setSelectedEntry(entry)}
+          />
+        ))}
+      </div>
+
+      <EntryDetailModal
+        entry={selectedEntry}
+        onClose={() => setSelectedEntry(null)}
+      />
+    </>
   );
 };
 

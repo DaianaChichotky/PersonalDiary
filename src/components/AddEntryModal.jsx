@@ -1,59 +1,111 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 
-const AddEntryModal = ({ onClose }) => {
-  // ESC key support
-  useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === 'Escape') onClose();
+const AddEntryModal = ({ onAddEntry }) => {
+  const [formData, setFormData] = useState({
+    title: '',
+    date: '',
+    image: '',
+    content: '',
+  });
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newEntry = {
+      id: Date.now(),
+      ...formData,
     };
-
-    window.addEventListener('keydown', handleEsc);
-    return () => window.removeEventListener('keydown', handleEsc);
-  }, [onClose]);
+    onAddEntry(newEntry);
+    // Reset form
+    setFormData({
+      title: '',
+      date: '',
+      image: '',
+      content: '',
+    });
+    // Close modal
+    document.getElementById('my_modal_5').close();
+  };
 
   return (
-    <div
-      className='
-        fixed inset-0 z-50
-        bg-black/50
-        flex items-center justify-center
-        animate-fadeIn
-      '
-      onClick={onClose} // backdrop click
-    >
-      <div
-        className='
-          bg-base-100
-          rounded-lg
-          w-full max-w-lg
-          p-6
-          space-y-4
-          animate-scaleIn
-        '
-        onClick={(e) => e.stopPropagation()} // prevent close on content click
+    <>
+      <button
+        className='bg-yellow-200 hover:bg-yellow-300 text-gray-800 cursor-pointer font-bold font-handwriting px-6 py-3 rounded-lg shadow-lg transform hover:rotate-1 hover:scale-105 transition-all duration-300 mt-8 mb-8'
+        onClick={() => document.getElementById('my_modal_5').showModal()}
       >
-        <h2 className='text-xl font-semibold'>Add New Entry</h2>
+        Add Entry
+      </button>
 
-        <input className='input input-bordered w-full' placeholder='Title' />
-        <input type='date' className='input input-bordered w-full' />
-        <input
-          className='input input-bordered w-full'
-          placeholder='Image URL'
-        />
+      <dialog id='my_modal_5' className='modal modal-bottom sm:modal-middle'>
+        <div className='modal-box bg-yellow-100 rounded-xl shadow-lg max-w-md p-6 font-handwriting'>
+          <h3 className='font-bold text-xl text-center mb-4'>New Entry</h3>
 
-        <textarea
-          className='textarea textarea-bordered w-full'
-          placeholder='Write your entry...'
-        />
+          <form onSubmit={handleSubmit} className='space-y-3'>
+            {/* Title */}
+            <input
+              type='text'
+              name='title'
+              placeholder='Title'
+              className='input input-bordered w-full'
+              value={formData.title}
+              onChange={handleChange}
+              required
+            />
 
-        <div className='flex justify-end gap-3'>
-          <button className='btn btn-ghost' onClick={onClose}>
-            Cancel
-          </button>
-          <button className='btn btn-primary'>Save</button>
+            {/* Date */}
+            <input
+              type='date'
+              name='date'
+              className='input input-bordered w-full'
+              value={formData.date}
+              onChange={handleChange}
+              required
+            />
+
+            {/* Image */}
+            <input
+              type='text'
+              name='image'
+              placeholder='Image URL'
+              className='input input-bordered w-full'
+              value={formData.image}
+              onChange={handleChange}
+              required
+            />
+
+            {/* Content */}
+            <textarea
+              name='content'
+              placeholder='Write your story...'
+              className='textarea textarea-bordered w-full'
+              rows='4'
+              value={formData.content}
+              onChange={handleChange}
+              required
+            />
+
+            <div className='modal-action'>
+              <button type='submit' className='btn btn-primary'>
+                Save Entry
+              </button>
+
+              <button
+                type='button'
+                className='btn'
+                onClick={() => document.getElementById('my_modal_5').close()}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
         </div>
-      </div>
-    </div>
+      </dialog>
+    </>
   );
 };
 
