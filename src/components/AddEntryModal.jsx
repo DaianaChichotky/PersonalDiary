@@ -29,7 +29,7 @@ const AddEntryModal = ({ onAddEntry }) => {
       content: '',
     });
     // Close modal
-    document.getElementById('my_modal_5').close();
+    document.getElementById('modal').close();
   };
 
   return (
@@ -45,7 +45,7 @@ const AddEntryModal = ({ onAddEntry }) => {
         </button>
       </div>
 
-      <dialog id='my_modal_5' className='modal modal-bottom sm:modal-middle'>
+      <dialog id='modal' className='modal modal-bottom sm:modal-middle'>
         <div className='modal-box bg-yellow-100 rounded-xl shadow-lg max-w-md p-6 font-handwriting'>
           <h3 className='font-bold text-xl text-center mb-4'>New Entry</h3>
 
@@ -101,7 +101,7 @@ const AddEntryModal = ({ onAddEntry }) => {
               <button
                 type='button'
                 className='btn'
-                onClick={() => document.getElementById('my_modal_5').close()}
+                onClick={() => document.getElementById('modal').close()}
               >
                 Cancel
               </button>
