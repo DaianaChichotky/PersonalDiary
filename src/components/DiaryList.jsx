@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { DiaryCard, EntryDetailModal } from '.';
 
 const DiaryList = ({ entries, onDelete }) => {
-  const [selectedEntry, setSelectedEntry] = useState(null);
+  const [selectedEntry, setSelectedEntry] = useState(null); //to manage which entry is selected and show the card in detail
 
   const sortedEntries = [...entries].sort(
     (a, b) => new Date(b.date) - new Date(a.date),

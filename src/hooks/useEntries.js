@@ -10,6 +10,7 @@ const useEntries = () => {
   // entries
 
   const [entries, setEntries] = useState(getInitial);
+  const [filterDate, setFilterDate] = useState('');
 
   useEffect(() => {
     localStorage.setItem('entries', JSON.stringify(entries));
@@ -33,10 +34,16 @@ const useEntries = () => {
     setEntries((prev) => prev.filter((entry) => entry.id !== id));
   };
 
+  // to fiter by date
+  const filteredEntries = filterDate
+    ? entries.filter((entry) => entry.date === filterDate)
+    : entries;
+
   return {
-    entries,
+    entries: filteredEntries,
     addEntry,
     deleteEntry,
+    setFilterDate,
   };
 };
 

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-const AddEntryModal = ({ onAddEntry }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const AddEntryModal = ({ onAddEntry, onFilterByDate }) => {
+  const [isOpen, setIsOpen] = useState(false); // when first loading the page, the modal is closed
+  const [selectedDate, setSelectedDate] = useState('');
 
   const [formData, setFormData] = useState({
     title: '',
@@ -41,14 +42,35 @@ const AddEntryModal = ({ onAddEntry }) => {
 
   return (
     <>
-      <div className='flex justify-start'>
+      {/* Button to add a new entry */}
+      <div className='flex items-center gap-8 ml-4 mt-8 mb-8'>
         <button
           className='bg-yellow-200 hover:bg-yellow-300 text-gray-800 cursor-pointer font-bold font-handwriting 
           px-10 py-4 text-lg rounded-xl shadow-lg transform hover:rotate-1 hover:scale-105 
           transition-all duration-300 mt-8 mb-8 ml-4'
           onClick={() => setIsOpen(true)}
         >
-          Add New Entry
+          + Add New Entry
+        </button>
+
+        {/* Calendar to pick a date */}
+        <input
+          type='date'
+          className='input input-bordered w-40'
+          value={selectedDate}
+          onChange={(e) => {
+            setSelectedDate(e.target.value);
+            onFilterByDate(e.target.value);
+          }}
+        />
+
+        <button
+          className='btn btn-sm  hover:bg-yellow-200 text-gray-800 cursor-pointer font-handwriting 
+          px-10 py-4 rounded-xl shadow-lg transform hover:rotate-1 hover:scale-105 
+          transition-all duration-300 mt-8 mb-8'
+          onClick={() => onFilterByDate('')}
+        >
+          Clear dates
         </button>
       </div>
 
