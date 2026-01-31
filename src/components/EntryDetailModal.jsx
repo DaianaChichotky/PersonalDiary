@@ -3,7 +3,7 @@ const EntryDetailModal = ({ entry, onClose }) => {
 
   return (
     <dialog open className='modal modal-middle'>
-      <div className='w-120 h-125 cursor-pointer p-4 bg-green-100 shadow-lg rounded-xl transform hover:scale-95 hover:rotate-1 transition-all duration-300'>
+      <div className='w-180 h-125 cursor-pointer p-4 bg-green-100 shadow-lg rounded-xl transform hover:scale-95 hover:rotate-1 transition-all duration-300'>
         {/* Image */}
         <img
           src={entry.image}
