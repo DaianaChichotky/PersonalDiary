@@ -76,7 +76,7 @@ const AddEntryModal = ({ onAddEntry, onFilterByDate }) => {
 
       {isOpen && (
         <dialog open className='modal modal-bottom sm:modal-middle'>
-          <div className='modal-box bg-yellow-100 rounded-xl shadow-lg max-w-md p-6 font-handwriting'>
+          <div className='modal-box bg-yellow-100 rounded-xl shadow-lg w-40 p-6 font-handwriting'>
             <h3 className='font-bold text-xl text-center mb-4'>New Entry</h3>
 
             <form onSubmit={handleSubmit} className='space-y-3'>
