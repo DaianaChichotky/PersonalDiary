@@ -28,9 +28,15 @@ const useEntries = () => {
     setEntries((prev) => [newEntry, ...prev]);
   };
 
+  // to delete an entry
+  const deleteEntry = (id) => {
+    setEntries((prev) => prev.filter((entry) => entry.id !== id));
+  };
+
   return {
     entries,
     addEntry,
+    deleteEntry,
   };
 };
 

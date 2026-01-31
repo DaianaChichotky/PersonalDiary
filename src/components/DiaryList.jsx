@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { DiaryCard, EntryDetailModal } from '.';
 
-const DiaryList = ({ entries }) => {
+const DiaryList = ({ entries, onDelete }) => {
   const [selectedEntry, setSelectedEntry] = useState(null);
 
   const sortedEntries = [...entries].sort(
@@ -16,6 +16,7 @@ const DiaryList = ({ entries }) => {
             key={entry.id}
             entry={entry}
             onSelect={() => setSelectedEntry(entry)}
+            onDelete={onDelete}
           />
         ))}
       </div>

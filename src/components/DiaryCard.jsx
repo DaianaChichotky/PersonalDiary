@@ -1,9 +1,20 @@
-const DiaryCard = ({ entry, onSelect }) => {
+const DiaryCard = ({ entry, onSelect, onDelete }) => {
   return (
     <div
       onClick={onSelect}
-      className='cursor-pointer p-4 bg-yellow-100 shadow-lg rounded-xl transform hover:scale-105 hover:rotate-1 transition-all duration-300'
+      className='relative cursor-pointer p-4 bg-yellow-100 shadow-lg rounded-xl transform hover:scale-105 hover:rotate-1 transition-all duration-300'
     >
+      {/* Delete button */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation(); // 👈 evita abrir el modal
+          onDelete(entry.id);
+        }}
+        className='absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full hover:bg-red-600 cursor-pointer'
+      >
+        Delete Memory
+      </button>
+
       {/* Image */}
       <div className='h-44 overflow-hidden'>
         <img
