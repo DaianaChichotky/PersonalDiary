@@ -2,37 +2,39 @@ const DiaryCard = ({ entry, onSelect, onDelete }) => {
   return (
     <div
       onClick={onSelect}
-      className='relative cursor-pointer p-4 bg-yellow-100 shadow-lg rounded-xl transform hover:scale-105 hover:rotate-1 transition-all duration-300'
+      className="relative cursor-pointer p-4 bg-yellow-100 shadow-lg rounded-xl
+                 transform hover:scale-105 hover:rotate-1 transition-all duration-300"
     >
-      {/* Delete button */}
+      {/* DELETE BUTTON */}
       <button
         onClick={(e) => {
-          e.stopPropagation(); // 👈 evita abrir el modal
+          e.stopPropagation(); //it stops the click from propagating to the card's onClick
           onDelete(entry.id);
         }}
-        className='absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full hover:bg-red-600 cursor-pointer'
+        className="absolute top-2 right-2 bg-red-500 text-white text-xs
+                   px-2 py-1 rounded-full hover:bg-red-600"
       >
         Delete Memory
       </button>
 
-      {/* Image */}
-      <div className='h-44 overflow-hidden'>
+      {/* IMAGE */}
+      <div className="h-44 overflow-hidden rounded-lg">
         <img
           src={entry.image}
           alt={entry.title}
-          className='w-full h-full object-cover'
+          className="w-full h-full object-cover"
         />
       </div>
 
-      {/* Content */}
+      {/* CONTENT */}
       <div
         style={{ fontFamily: "'Patrick Hand', cursive" }}
-        className='bg-white p-4 text-center'
+        className="bg-white p-4 text-center mt-2 rounded-lg"
       >
-        <h2 className='text-lg'>{entry.title}</h2>
+        <h2 className="text-lg font-semibold">{entry.title}</h2>
 
-        <p className='text-xs text-gray-500 mt-1'>
-          {new Date(entry.date).toLocaleDateString('en-EN', {
+        <p className="text-xs text-gray-500 mt-1">
+          {new Date(entry.date).toLocaleDateString('en-GB', {
             day: 'numeric',
             month: 'long',
             year: 'numeric',
