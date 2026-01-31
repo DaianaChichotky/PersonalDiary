@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { DiaryCard, EntryDetailModal, EditEntryModal } from '.';
 
 const DiaryList = ({ entries, onDelete, onUpdateEntry }) => {
-  const [selectedEntry, setSelectedEntry] = useState(null); //to manage which entry is selected and show the card in detail
+  const [selectedEntry, setSelectedEntry] = useState(null);
   const [editingEntry, setEditingEntry] = useState(null);
 
   const sortedEntries = [...entries].sort(
@@ -10,7 +10,7 @@ const DiaryList = ({ entries, onDelete, onUpdateEntry }) => {
   );
 
   const handleEdit = (entry) => {
-    setEditingEntry(entry); // abre modal o formulario de edición
+    setEditingEntry(entry);
   };
 
   return (
