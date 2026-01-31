@@ -3,7 +3,8 @@ import Layout from './layout/Layout';
 import useEntries from './hooks/useEntries';
 
 const App = () => {
-  const { entries, addEntry, deleteEntry, setFilterDate } = useEntries();
+  const { entries, addEntry, deleteEntry, updateEntry, setFilterDate } =
+    useEntries();
 
   // const result = useEntries();
   // const entries = result.entries;
@@ -15,7 +16,11 @@ const App = () => {
 
       <AddEntryModal onAddEntry={addEntry} onFilterByDate={setFilterDate} />
 
-      <DiaryList entries={entries} onDelete={deleteEntry} />
+      <DiaryList
+        entries={entries}
+        onDelete={deleteEntry}
+        onUpdateEntry={updateEntry}
+      />
     </Layout>
   );
 };

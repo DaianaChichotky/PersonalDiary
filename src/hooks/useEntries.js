@@ -23,18 +23,43 @@ const useEntries = () => {
 
     if (existsForDay) {
       alert('You already wrote an entry today 😊');
-      return;
+      return false;
     }
 
     setEntries((prev) => [newEntry, ...prev]);
+    return true;
+  };
+
+  // edit entry
+
+  const updateEntry = (updatedEntry) => {
+    const existsForDay = entries.some(
+      (entry) =>
+        entry.date === updatedEntry.date && entry.id !== updatedEntry.id,
+    );
+
+    if (existsForDay) {
+      alert('You already wrote an entry on this day 😊');
+      return false;
+    }
+
+    setEntries((prev) =>
+      prev.map((entry) =>
+        entry.id === updatedEntry.id ? updatedEntry : entry,
+      ),
+    );
+
+    return true;
   };
 
   // to delete an entry
+
   const deleteEntry = (id) => {
     setEntries((prev) => prev.filter((entry) => entry.id !== id));
   };
 
   // to fiter by date
+
   const filteredEntries = filterDate
     ? entries.filter((entry) => entry.date === filterDate)
     : entries;
@@ -42,6 +67,7 @@ const useEntries = () => {
   return {
     entries: filteredEntries,
     addEntry,
+    updateEntry,
     deleteEntry,
     setFilterDate,
   };

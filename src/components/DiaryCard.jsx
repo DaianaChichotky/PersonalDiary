@@ -1,4 +1,4 @@
-const DiaryCard = ({ entry, onSelect, onDelete }) => {
+const DiaryCard = ({ entry, onSelect, onDelete, onEdit }) => {
   return (
     <div
       onClick={onSelect}
@@ -13,6 +13,17 @@ const DiaryCard = ({ entry, onSelect, onDelete }) => {
         className='absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full hover:bg-red-600 cursor-pointer'
       >
         Delete Entry
+      </button>
+
+      {/* Edit button */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onEdit(entry);
+        }}
+        className='absolute top-2 right-23 bg-blue-500 text-white text-xs px-2 py-1 rounded-full hover:bg-blue-600 cursor-pointer'
+      >
+        Edit
       </button>
 
       {/* Image */}

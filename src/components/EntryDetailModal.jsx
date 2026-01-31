@@ -3,12 +3,12 @@ const EntryDetailModal = ({ entry, onClose }) => {
 
   return (
     <dialog open className='modal modal-middle'>
-      <div className='w-180 h-125 cursor-pointer p-4 bg-green-100 shadow-lg rounded-xl transform hover:scale-95 hover:rotate-1 transition-all duration-300'>
+      <div className='w-96 h-125 flex flex-col cursor-pointer p-4 bg-green-100 shadow-lg rounded-xl transform hover:scale-95 hover:rotate-1 transition-all duration-300'>
         {/* Image */}
         <img
           src={entry.image}
           alt={entry.title}
-          className='rounded-lg mb-4 max-h-64 w-full object-cover'
+          className='rounded-lg mb-3 w-full h-48 object-cover'
         />
         {/* Title */}
         <h2
@@ -26,12 +26,15 @@ const EntryDetailModal = ({ entry, onClose }) => {
           })}
         </p>
         {/* Description */}
-        <p
-          style={{ fontFamily: "'Patrick Hand', cursive" }}
-          className='text-gray-700 text-center'
-        >
-          {entry.content}
-        </p>
+        <div className='flex-1 overflow-y-auto bg-white p-2 rounded'>
+          <p
+            style={{ fontFamily: "'Patrick Hand', cursive" }}
+            className='text-gray-700 text-center'
+          >
+            {entry.content}
+          </p>
+        </div>
+
         {/* Button to close */}
         <div className='modal-action'>
           <button className='btn' onClick={onClose}>
