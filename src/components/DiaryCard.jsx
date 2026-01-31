@@ -7,12 +7,12 @@ const DiaryCard = ({ entry, onSelect, onDelete }) => {
       {/* Delete button */}
       <button
         onClick={(e) => {
-          e.stopPropagation(); // 👈 evita abrir el modal
+          e.stopPropagation(); // avoid to open the modal
           onDelete(entry.id);
         }}
         className='absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full hover:bg-red-600 cursor-pointer'
       >
-        Delete Memory
+        Delete Entry
       </button>
 
       {/* Image */}
