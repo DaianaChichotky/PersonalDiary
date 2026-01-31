@@ -1,41 +1,32 @@
-const DiaryCard = () => {
+const DiaryCard = ({ entry, onSelect }) => {
   return (
     <div
-      className='
-        group
-        card
-        bg-base-100
-        shadow-md
-        transition
-        duration-300
-        ease-out
-        hover:-translate-y-1
-        hover:shadow-2xl
-        cursor-pointer
-      '
+      onClick={onSelect}
+      className='cursor-pointer p-4 bg-yellow-100 shadow-lg rounded-xl transform hover:scale-105 hover:rotate-1 transition-all duration-300'
     >
       {/* Image */}
-      <figure className='h-48 overflow-hidden rounded-t-xl'>
+      <div className='h-44 overflow-hidden'>
         <img
-          src='https://picsum.photos/400/300'
-          alt='Diary preview'
-          className='
-            w-full
-            h-full
-            object-cover
-            transition-transform
-            duration-300
-            ease-out
-            group-hover:scale-105
-          '
+          src={entry.image}
+          alt={entry.title}
+          className='w-full h-full object-cover'
         />
-      </figure>
+      </div>
 
       {/* Content */}
-      <div className='card-body'>
-        <p className='text-sm text-gray-500'>April 23, 2024</p>
+      <div
+        style={{ fontFamily: "'Patrick Hand', cursive" }}
+        className='bg-white p-4 text-center'
+      >
+        <h2 className='text-lg'>{entry.title}</h2>
 
-        <h2 className='card-title text-lg'>Beach Sunset</h2>
+        <p className='text-xs text-gray-500 mt-1'>
+          {new Date(entry.date).toLocaleDateString('en-EN', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+          })}
+        </p>
       </div>
     </div>
   );

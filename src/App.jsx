@@ -1,32 +1,22 @@
-import { useState } from 'react';
-import Header from './components/Header';
-import DiaryList from './components/DiaryList';
-import AddEntryModal from './components/AddEntryModal';
-import Footer from './components/Footer';
+import { AddEntryModal, DiaryList, Hero } from './components';
+import Layout from './layout/Layout';
+import useEntries from './hooks/useEntries';
 
 const App = () => {
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const { entries, addEntry } = useEntries();
 
-  const openAddEntryModal = () => {
-    setIsAddModalOpen(true);
-  };
-
-  const closeAddEntryModal = () => {
-    setIsAddModalOpen(false);
-  };
+  // const result = useEntries();
+  // const entries = result.entries;
+  // const addEntry = result.addEntry;
 
   return (
-    <div className='min-h-screen flex flex-col bg-base-200'>
-      <Header onAddEntry={openAddEntryModal} />
+    <Layout>
+      <Hero />
 
-      <main className='flex-1 p-6'>
-        <DiaryList />
-      </main>
+      <AddEntryModal onAddEntry={addEntry} />
 
-      <Footer />
-
-      {isAddModalOpen && <AddEntryModal onClose={closeAddEntryModal} />}
-    </div>
+      <DiaryList entries={entries} />
+    </Layout>
   );
 };
 
